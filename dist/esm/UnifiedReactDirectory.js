@@ -121,7 +121,7 @@ export default function UnifiedDirectory(props) {
         !props.notabs && CATEGORIES && CATEGORIES.length > 0 && filter(INTEGRATIONS).length && (React.createElement("div", { className: "unified_menu" },
             React.createElement("button", { className: `unified_button unified_button_all ${selectedCategory ? '' : ' active'}`, onClick: () => setCategory('') }, "All"),
             CATEGORIES.map((cat) => (React.createElement("button", { key: cat, className: `unified_button unified_button_${cat} ${selectedCategory === cat ? 'active' : ''}`, onClick: () => setCategory(cat) }, CATEGORY_MAP[cat]))))),
-        props.search_bar && (React.createElement("div", null,
+        !loading && INTEGRATIONS.length > 0 && props.search_bar && (React.createElement("div", null,
             React.createElement("input", { type: 'search', name: 'search integrations', id: 'search_integrations', value: search, onChange: handleSearchChange, style: {
                     width: '100%',
                     borderRadius: '4px',
@@ -140,6 +140,6 @@ export default function UnifiedDirectory(props) {
                             .filter((c) => CATEGORY_MAP[c])
                             .map((cat) => (React.createElement("div", { key: cat, className: "unified_vendor_cats" },
                             React.createElement("span", null, CATEGORY_MAP[cat])))))))),
-            filter(INTEGRATIONS).length === 0 && React.createElement("div", { className: "unified_vendor" }, "No integrations available"))));
+            filter(INTEGRATIONS).filter(searchFilter).length === 0 && React.createElement("div", { className: "unified_vendor" }, "No integrations available"))));
 }
 //# sourceMappingURL=UnifiedReactDirectory.js.map

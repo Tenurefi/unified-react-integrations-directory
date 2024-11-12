@@ -7,7 +7,7 @@
         "build": "npm run build:esm && npm run build:cjs",
         "build:esm": "tsc --outDir dist/esm",
         "build:cjs": "tsc --module commonjs --outDir dist/cjs",
-        "release": "standard-version && git push --follow-tags && npm publish"
+        "release": "standard-version && npm run build && git push --follow-tags && npm publish"
     },
     "author": "Unified API Inc. x Tenurefi",
     "license": "ISC",
