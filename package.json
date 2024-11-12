@@ -8,19 +8,18 @@
         "build:esm": "tsc --outDir dist/esm",
         "build:cjs": "tsc --module commonjs --outDir dist/cjs"
     },
+    "author": "Unified API Inc.",
+    "license": "ISC",
     "repository": {
         "type": "git",
-        "url": "git+ssh://git@github.com/unified-to/unified-react-integrations-directory.git"
+        "url": "git+ssh://git@github.com:Tenurefi/unified-react-integrations-directory.git"
     },
     "keywords": [
         "unifiedapi"
     ],
-    "author": "Unified API Inc.",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/unified-to/unified-react-integrations-directory/issues"
+    "publishConfig": {
+        "@tenure-rewards:registry": "https://npm.pkg.github.com"
     },
-    "homepage": "https://github.com/unified-to/unified-react-integrations-directory#readme",
     "devDependencies": {
         "@types/react": "^18.0.37",
         "react": "^18.2.0",
