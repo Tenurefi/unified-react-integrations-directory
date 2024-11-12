@@ -1,6 +1,6 @@
 {
     "name": "@tenurefi/unified-react-directory",
-    "version": "1.1.17",
+    "version": "1.0.0",
     "description": "React component for Unified.to's Integrations Directory",
     "scripts": {
         "publish": "npm publish",
