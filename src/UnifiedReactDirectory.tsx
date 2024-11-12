@@ -167,7 +167,7 @@ export default function UnifiedDirectory(props: UnifiedDirectoryProps) {
                     ))}
                 </div>
             )}
-            {props.search_bar && (
+            {!loading && INTEGRATIONS.length > 0 && props.search_bar && (
                 <div>
                     <input
                         type='search'
@@ -204,7 +204,7 @@ export default function UnifiedDirectory(props: UnifiedDirectoryProps) {
                         </div>
                     </a>
                 ))}
-                {filter(INTEGRATIONS).length === 0 && <div className="unified_vendor">No integrations available</div>}
+                {filter(INTEGRATIONS).filter(searchFilter).length === 0 && <div className="unified_vendor">No integrations available</div>}
             </div>
         </div>
     );
