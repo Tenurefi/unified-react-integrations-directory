@@ -58,6 +58,7 @@ function UnifiedDirectory(props) {
     const [CATEGORIES, setCategories] = (0, react_1.useState)([]);
     const [selectedCategory, setCategory] = (0, react_1.useState)('');
     const [loading, setLoading] = (0, react_1.useState)(false);
+    const [search, setSearch] = (0, react_1.useState)('');
     (0, react_1.useEffect)(() => {
         if (!loading && !INTEGRATIONS.length) {
             setLoading(true);
@@ -133,15 +134,28 @@ function UnifiedDirectory(props) {
             }
         });
     }
+    function handleSearchChange(e) {
+        e.preventDefault();
+        setSearch(e.currentTarget.value);
+    }
+    function searchFilter(integration) {
+        return integration.name.toLowerCase().includes(search.toLowerCase());
+    }
     return (react_1.default.createElement("div", { className: "unified" },
         !props.nostyle && react_1.default.createElement("style", null, "@import url(https://api.unified.to/docs/unified.css)"),
         !props.notabs && CATEGORIES && CATEGORIES.length > 0 && filter(INTEGRATIONS).length && (react_1.default.createElement("div", { className: "unified_menu" },
             react_1.default.createElement("button", { className: `unified_button unified_button_all ${selectedCategory ? '' : ' active'}`, onClick: () => setCategory('') }, "All"),
             CATEGORIES.map((cat) => (react_1.default.createElement("button", { key: cat, className: `unified_button unified_button_${cat} ${selectedCategory === cat ? 'active' : ''}`, onClick: () => setCategory(cat) }, CATEGORY_MAP[cat]))))),
-        react_1.default.createElement("div", null,
-            react_1.default.createElement("input", { type: "search", name: "", id: "" })),
+        !loading && INTEGRATIONS.length > 0 && props.search_bar && (react_1.default.createElement("div", null,
+            react_1.default.createElement("input", { type: 'search', name: 'search integrations', id: 'search_integrations', value: search, onChange: handleSearchChange, style: {
+                    width: '100%',
+                    borderRadius: '4px',
+                    border: '1px solid rgb(230, 232, 240)',
+                    marginBottom: '12px',
+                    fontWeight: 500,
+                }, placeholder: 'Search for integrations' }))),
         react_1.default.createElement("div", { className: "unified_vendors" },
-            filter(INTEGRATIONS).map((integration) => (react_1.default.createElement("a", { key: integration.type, href: unified_get_auth_url(integration), className: "unified_vendor" },
+            filter(INTEGRATIONS).filter(searchFilter).map((integration) => (react_1.default.createElement("a", { key: integration.type, href: unified_get_auth_url(integration), className: "unified_vendor" },
                 react_1.default.createElement("img", { alt: integration.name, src: integration.logo_url, className: "unified_image" }),
                 react_1.default.createElement("div", { className: "unified_vendor_inner" },
                     react_1.default.createElement("div", { className: "unified_vendor_name" }, integration.name),
@@ -151,7 +165,7 @@ function UnifiedDirectory(props) {
                             .filter((c) => CATEGORY_MAP[c])
                             .map((cat) => (react_1.default.createElement("div", { key: cat, className: "unified_vendor_cats" },
                             react_1.default.createElement("span", null, CATEGORY_MAP[cat])))))))),
-            filter(INTEGRATIONS).length === 0 && react_1.default.createElement("div", { className: "unified_vendor" }, "No integrations available"))));
+            filter(INTEGRATIONS).filter(searchFilter).length === 0 && react_1.default.createElement("div", { className: "unified_vendor" }, "No integrations available"))));
 }
 exports.default = UnifiedDirectory;
 //# sourceMappingURL=UnifiedReactDirectory.js.map

@@ -1,15 +1,41 @@
+/// <reference types="mongoose/types/aggregate" />
+/// <reference types="mongoose/types/callback" />
+/// <reference types="mongoose/types/collection" />
+/// <reference types="mongoose/types/connection" />
+/// <reference types="mongoose/types/cursor" />
+/// <reference types="mongoose/types/document" />
+/// <reference types="mongoose/types/error" />
+/// <reference types="mongoose/types/expressions" />
+/// <reference types="mongoose/types/helpers" />
+/// <reference types="mongoose/types/middlewares" />
+/// <reference types="mongoose/types/indexes" />
+/// <reference types="mongoose/types/models" />
+/// <reference types="mongoose/types/mongooseoptions" />
+/// <reference types="mongoose/types/pipelinestage" />
+/// <reference types="mongoose/types/populate" />
+/// <reference types="mongoose/types/query" />
+/// <reference types="mongoose/types/schemaoptions" />
+/// <reference types="mongoose/types/schematypes" />
+/// <reference types="mongoose/types/session" />
+/// <reference types="mongoose/types/types" />
+/// <reference types="mongoose/types/utility" />
+/// <reference types="mongoose/types/validation" />
+/// <reference types="mongoose/types/virtuals" />
+/// <reference types="mongoose" />
+/// <reference types="mongoose/types/inferschematype" />
+/// <reference types="mongoose/types/inferrawdoctype" />
 export declare const schemaApiCall: {
     created_at: {
         type: DateConstructor;
         index: boolean;
     };
     connection_id: {
-        type: any;
+        type: typeof import("mongoose").Schema.Types.ObjectId;
         index: boolean;
         ref: string;
     };
     workspace_id: {
-        type: any;
+        type: typeof import("mongoose").Schema.Types.ObjectId;
         index: boolean;
         ref: string;
     };
@@ -54,7 +80,7 @@ export declare const schemaApiCall: {
         default: string;
     };
     webhook_id: {
-        type: any;
+        type: typeof import("mongoose").Schema.Types.ObjectId;
         ref: string;
     };
     is_billable: {
@@ -134,7 +160,7 @@ export declare const schemaConnectionAuth: {
 };
 export declare const schemaConnection: {
     workspace_id: {
-        type: any;
+        type: typeof import("mongoose").Schema.Types.ObjectId;
         index: boolean;
         ref: string;
     };
@@ -436,7 +462,7 @@ export declare const schemaIssue: {
         type: StringConstructor;
     };
     workspace_id: {
-        type: any;
+        type: typeof import("mongoose").Schema.Types.ObjectId;
         index: boolean;
         ref: string;
     };
@@ -458,7 +484,7 @@ export declare const schemaIssue: {
 };
 export declare const schemaNotification: {
     workspace_id: {
-        type: any;
+        type: typeof import("mongoose").Schema.Types.ObjectId;
         index: boolean;
         ref: string;
     };
@@ -466,7 +492,7 @@ export declare const schemaNotification: {
         type: StringConstructor;
     };
     user_id: {
-        type: any;
+        type: typeof import("mongoose").Schema.Types.ObjectId;
         ref: string;
     };
     user_name: {
@@ -476,11 +502,11 @@ export declare const schemaNotification: {
         type: StringConstructor;
     };
     webhook_id: {
-        type: any;
+        type: typeof import("mongoose").Schema.Types.ObjectId;
         ref: string;
     };
     connection_id: {
-        type: any;
+        type: typeof import("mongoose").Schema.Types.ObjectId;
         ref: string;
     };
     integration_type: {
@@ -506,12 +532,12 @@ export declare const schemaUser: {
         index: boolean;
     };
     workspace_id: {
-        type: any;
+        type: typeof import("mongoose").Schema.Types.ObjectId;
         index: boolean;
         ref: string;
     };
     workspace_ids: {
-        type: any[];
+        type: typeof import("mongoose").Schema.Types.ObjectId[];
         index: boolean;
         ref: string;
     };
@@ -528,12 +554,12 @@ export declare const schemaWebhook: {
         type: DateConstructor;
     };
     workspace_id: {
-        type: any;
+        type: typeof import("mongoose").Schema.Types.ObjectId;
         index: boolean;
         ref: string;
     };
     connection_id: {
-        type: any;
+        type: typeof import("mongoose").Schema.Types.ObjectId;
         index: boolean;
         ref: string;
     };
@@ -594,12 +620,12 @@ export declare const schemaWebhookData: {
                 type: DateConstructor;
             };
             workspace_id: {
-                type: any;
+                type: typeof import("mongoose").Schema.Types.ObjectId;
                 index: boolean;
                 ref: string;
             };
             connection_id: {
-                type: any;
+                type: typeof import("mongoose").Schema.Types.ObjectId;
                 index: boolean;
                 ref: string;
             };
@@ -716,7 +742,7 @@ export declare const schemaWorkspace: {
         type: StringConstructor;
     };
     admin_ids: {
-        type: any[];
+        type: typeof import("mongoose").Schema.Types.ObjectId[];
         index: boolean;
         ref: string;
     };
