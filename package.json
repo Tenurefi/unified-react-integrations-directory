@@ -1,5 +1,5 @@
 {
-    "name": "@tenure-rewards/unified-react-directory",
+    "name": "@tenurefi/unified-react-directory",
     "version": "1.1.17",
     "description": "React component for Unified.to's Integrations Directory",
     "scripts": {
@@ -8,7 +8,7 @@
         "build:esm": "tsc --outDir dist/esm",
         "build:cjs": "tsc --module commonjs --outDir dist/cjs"
     },
-    "author": "Unified API Inc.",
+    "author": "Unified API Inc. x Tenurefi",
     "license": "ISC",
     "repository": {
         "type": "git",
@@ -18,7 +18,7 @@
         "unifiedapi"
     ],
     "publishConfig": {
-        "@tenure-rewards:registry": "https://npm.pkg.github.com"
+        "@tenurefi:registry": "https://npm.pkg.github.com"
     },
     "devDependencies": {
         "@types/react": "^18.0.37",
@@ -37,5 +37,8 @@
         "dist",
         "src",
         "README.md"
-    ]
+    ],
+    "dependencies": {
+        "@tenurefi/unified-react-directory": "file:"
+    }
 }
