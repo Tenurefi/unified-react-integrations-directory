@@ -1,12 +1,13 @@
 {
     "name": "@tenurefi/unified-react-directory",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "React component for Unified.to's Integrations Directory",
     "scripts": {
         "publish": "npm publish",
         "build": "npm run build:esm && npm run build:cjs",
         "build:esm": "tsc --outDir dist/esm",
-        "build:cjs": "tsc --module commonjs --outDir dist/cjs"
+        "build:cjs": "tsc --module commonjs --outDir dist/cjs",
+        "release": "standard-version && git push --follow-tags && npm publish"
     },
     "author": "Unified API Inc. x Tenurefi",
     "license": "ISC",
@@ -24,6 +25,7 @@
         "@types/react": "^18.0.37",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "standard-version": "^9.5.0",
         "tslib": "^2.5.0",
         "typescript": "^5.0.4"
     },
