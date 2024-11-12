@@ -33,6 +33,7 @@ export default function UnifiedDirectory(props) {
     const [CATEGORIES, setCategories] = useState([]);
     const [selectedCategory, setCategory] = useState('');
     const [loading, setLoading] = useState(false);
+    const [search, setSearch] = useState('');
     useEffect(() => {
         if (!loading && !INTEGRATIONS.length) {
             setLoading(true);
@@ -108,13 +109,28 @@ export default function UnifiedDirectory(props) {
             }
         });
     }
+    function handleSearchChange(e) {
+        e.preventDefault();
+        setSearch(e.currentTarget.value);
+    }
+    function searchFilter(integration) {
+        return integration.name.toLowerCase().includes(search.toLowerCase());
+    }
     return (React.createElement("div", { className: "unified" },
         !props.nostyle && React.createElement("style", null, "@import url(https://api.unified.to/docs/unified.css)"),
         !props.notabs && CATEGORIES && CATEGORIES.length > 0 && filter(INTEGRATIONS).length && (React.createElement("div", { className: "unified_menu" },
             React.createElement("button", { className: `unified_button unified_button_all ${selectedCategory ? '' : ' active'}`, onClick: () => setCategory('') }, "All"),
             CATEGORIES.map((cat) => (React.createElement("button", { key: cat, className: `unified_button unified_button_${cat} ${selectedCategory === cat ? 'active' : ''}`, onClick: () => setCategory(cat) }, CATEGORY_MAP[cat]))))),
+        props.search_bar && (React.createElement("div", null,
+            React.createElement("input", { type: 'search', name: 'search integrations', id: 'search_integrations', value: search, onChange: handleSearchChange, style: {
+                    width: '100%',
+                    borderRadius: '4px',
+                    border: '1px solid rgb(230, 232, 240)',
+                    marginBottom: '12px',
+                    fontWeight: 500,
+                }, placeholder: 'Search for integrations' }))),
         React.createElement("div", { className: "unified_vendors" },
-            filter(INTEGRATIONS).map((integration) => (React.createElement("a", { key: integration.type, href: unified_get_auth_url(integration), className: "unified_vendor" },
+            filter(INTEGRATIONS).filter(searchFilter).map((integration) => (React.createElement("a", { key: integration.type, href: unified_get_auth_url(integration), className: "unified_vendor" },
                 React.createElement("img", { alt: integration.name, src: integration.logo_url, className: "unified_image" }),
                 React.createElement("div", { className: "unified_vendor_inner" },
                     React.createElement("div", { className: "unified_vendor_name" }, integration.name),

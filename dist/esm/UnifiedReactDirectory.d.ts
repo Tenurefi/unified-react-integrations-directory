@@ -14,6 +14,7 @@ interface UnifiedDirectoryProps {
     notabs?: boolean;
     nocategories?: boolean;
     dc?: 'us' | 'eu';
+    search_bar?: boolean;
 }
 export default function UnifiedDirectory(props: UnifiedDirectoryProps): JSX.Element;
 export {};

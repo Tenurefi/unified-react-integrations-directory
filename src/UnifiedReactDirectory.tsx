@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ChangeEvent } from 'react';
 import { TIntegrationCategory } from './models/Unified';
 
 interface IIntegration {
@@ -25,6 +25,7 @@ interface UnifiedDirectoryProps {
     notabs?: boolean;
     nocategories?: boolean;
     dc?: 'us' | 'eu';
+    search_bar?: boolean;
 }
 
 const API_NA_URL = 'https://api.unified.to';
@@ -54,6 +55,7 @@ export default function UnifiedDirectory(props: UnifiedDirectoryProps) {
     const [CATEGORIES, setCategories] = useState<TIntegrationCategory[]>([]);
     const [selectedCategory, setCategory] = useState<TIntegrationCategory | ''>('');
     const [loading, setLoading] = useState<boolean>(false);
+    const [search, setSearch] = useState<string>('');
 
     useEffect(() => {
         if (!loading && !INTEGRATIONS.length) {
@@ -137,6 +139,15 @@ export default function UnifiedDirectory(props: UnifiedDirectoryProps) {
         }
     }
 
+    function handleSearchChange(e: ChangeEvent<HTMLInputElement>) {
+        e.preventDefault();
+        setSearch(e.currentTarget.value);
+    }
+
+    function searchFilter(integration: IIntegration) {
+        return integration.name.toLowerCase().includes(search.toLowerCase());
+    }
+
     return (
         <div className="unified">
             {!props.nostyle && <style>@import url(https://api.unified.to/docs/unified.css)</style>}
@@ -156,9 +167,27 @@ export default function UnifiedDirectory(props: UnifiedDirectoryProps) {
                     ))}
                 </div>
             )}
-
+            {props.search_bar && (
+                <div>
+                    <input
+                        type='search'
+                        name='search integrations'
+                        id='search_integrations'
+                        value={search}
+                        onChange={handleSearchChange}
+                        style={{
+                            width: '100%',
+                            borderRadius: '4px',
+                            border: '1px solid rgb(230, 232, 240)',
+                            marginBottom: '12px',
+                            fontWeight: 500,
+                        }}
+                        placeholder='Search for integrations'
+                    />
+                </div>
+            )}
             <div className="unified_vendors">
-                {filter(INTEGRATIONS).map((integration) => (
+                {filter(INTEGRATIONS).filter(searchFilter).map((integration) => (
                     <a key={integration.type} href={unified_get_auth_url(integration)} className="unified_vendor">
                         <img alt={integration.name} src={integration.logo_url} className="unified_image" />
                         <div className="unified_vendor_inner">

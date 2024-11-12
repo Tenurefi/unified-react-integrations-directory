@@ -33,7 +33,10 @@ exports.IntegrationCategory = [
     'genai',
     'messaging',
     'kms',
-    'task'
+    'task',
+    'scim',
+    'lms',
+    'repo'
 ];
 exports.IntegrationPermission = [
     'auth_login',
@@ -50,6 +53,8 @@ exports.IntegrationPermission = [
     'accounting_taxrate_read',
     'accounting_taxrate_write',
     'accounting_organization_read',
+    'accounting_order_read',
+    'accounting_order_write',
     'payment_payment_read',
     'payment_payment_write',
     'payment_payout_read',
@@ -133,7 +138,29 @@ exports.IntegrationPermission = [
     'task_project_read',
     'task_project_write',
     'task_task_read',
-    'task_task_write'
+    'task_task_write',
+    'scim_users_read',
+    'scim_users_write',
+    'scim_groups_read',
+    'scim_groups_write',
+    'lms_course_read',
+    'lms_course_write',
+    'lms_class_read',
+    'lms_class_write',
+    'lms_student_read',
+    'lms_student_write',
+    'lms_instructor_read',
+    'lms_instructor_write',
+    'repo_organization_read',
+    'repo_organization_write',
+    'repo_repository_read',
+    'repo_repository_write',
+    'repo_branch_read',
+    'repo_branch_write',
+    'repo_commit_read',
+    'repo_commit_write',
+    'repo_pullrequest_read',
+    'repo_pullrequest_write'
 ];
 exports.IntegrationSupportWebhookType = [
     'virtual',
@@ -146,7 +173,8 @@ exports.IssueStatus = [
     'IN_PROGRESS',
     'ON_HOLD',
     'VALIDATING',
-    'REJECTED'
+    'REJECTED',
+    'UP_NEXT'
 ];
 exports.ObjectType = [
     'accounting_account',
@@ -156,6 +184,7 @@ exports.ObjectType = [
     'accounting_invoice',
     'accounting_taxrate',
     'accounting_organization',
+    'accounting_order',
     'payment_payment',
     'payment_link',
     'payment_payout',
@@ -203,7 +232,19 @@ exports.ObjectType = [
     'kms_space',
     'kms_page',
     'task_project',
-    'task_task'
+    'task_task',
+    'scim_users',
+    'scim_groups',
+    'lms_course',
+    'lms_class',
+    'lms_student',
+    'lms_instructor',
+    'scim_groups',
+    'repo_organization',
+    'repo_repository',
+    'repo_branch',
+    'repo_commit',
+    'repo_pullrequest'
 ];
 exports.PlanTerm = [
     'monthly',
@@ -246,6 +287,7 @@ exports.WorkspaceEventType = [
     'WORKSPACE_OVER_LIMIT',
     'WORKSPACE_80PERCENT_LIMIT',
     'WEBHOOK_CREATED',
-    'WEBHOOK_DELETED'
+    'WEBHOOK_DELETED',
+    'WEBHOOK_UNHEALTHY'
 ];
 //# sourceMappingURL=Unified.js.map

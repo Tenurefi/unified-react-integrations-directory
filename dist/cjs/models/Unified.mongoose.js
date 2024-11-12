@@ -1,9 +1,12 @@
+"use strict";
 // Mongoose schemas
-import { SchemaTypes } from 'mongoose';
-export const schemaApiCall = {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.schemaWorkspace = exports.schemaWorkspaceIntegration = exports.schemaWebhookData = exports.schemaWebhook = exports.schemaUser = exports.schemaNotification = exports.schemaIssue = exports.schemaInvoice = exports.schemaIntegrationSupport = exports.schemaConnection = exports.schemaConnectionAuth = exports.schemaApiCall = void 0;
+const mongoose_1 = require("mongoose");
+exports.schemaApiCall = {
     created_at: { type: Date, index: true },
-    connection_id: { type: SchemaTypes.ObjectId, index: true, ref: 'Connection' },
-    workspace_id: { type: SchemaTypes.ObjectId, index: true, ref: 'Workspace' },
+    connection_id: { type: mongoose_1.SchemaTypes.ObjectId, index: true, ref: 'Connection' },
+    workspace_id: { type: mongoose_1.SchemaTypes.ObjectId, index: true, ref: 'Workspace' },
     integration_type: { type: String, index: true },
     external_xref: { type: String, index: true },
     name: { type: String, index: true },
@@ -15,10 +18,10 @@ export const schemaApiCall = {
     type: { type: String, enum: ['login', 'webhook', 'inbound'] },
     method: { type: String },
     environment: { type: String, index: true, default: 'Production' },
-    webhook_id: { type: SchemaTypes.ObjectId, ref: 'Webhook' },
+    webhook_id: { type: mongoose_1.SchemaTypes.ObjectId, ref: 'Webhook' },
     is_billable: { type: Boolean },
 };
-export const schemaConnectionAuth = {
+exports.schemaConnectionAuth = {
     token: { type: String },
     access_token: { type: String },
     refresh_token: { type: String },
@@ -43,13 +46,13 @@ export const schemaConnectionAuth = {
     refresh_token_expires_date: { type: Date },
     dev_api_key: { type: String },
 };
-export const schemaConnection = {
-    workspace_id: { type: SchemaTypes.ObjectId, index: true, ref: 'Workspace' },
+exports.schemaConnection = {
+    workspace_id: { type: mongoose_1.SchemaTypes.ObjectId, index: true, ref: 'Workspace' },
     integration_type: { type: String, index: true },
     external_xref: { type: String, index: true },
     permissions: { type: [String], enum: ['auth_login', 'accounting_account_read', 'accounting_account_write', 'accounting_transaction_read', 'accounting_transaction_write', 'accounting_journal_read', 'accounting_journal_write', 'accounting_invoice_read', 'accounting_invoice_write', 'accounting_contact_read', 'accounting_contact_write', 'accounting_taxrate_read', 'accounting_taxrate_write', 'accounting_organization_read', 'accounting_order_read', 'accounting_order_write', 'payment_payment_read', 'payment_payment_write', 'payment_payout_read', 'payment_refund_read', 'payment_link_read', 'payment_link_write', 'commerce_item_read', 'commerce_item_write', 'commerce_collection_read', 'commerce_collection_write', 'commerce_inventory_read', 'commerce_inventory_write', 'commerce_location_read', 'commerce_location_write', 'ats_activity_read', 'ats_activity_write', 'ats_application_read', 'ats_application_write', 'ats_applicationstatus_read', 'ats_candidate_read', 'ats_candidate_write', 'ats_interview_read', 'ats_interview_write', 'ats_job_read', 'ats_job_write', 'ats_company_read', 'ats_document_read', 'ats_document_write', 'ats_scorecard_read', 'ats_scorecard_write', 'crm_company_read', 'crm_company_write', 'crm_contact_read', 'crm_contact_write', 'crm_deal_read', 'crm_deal_write', 'crm_event_read', 'crm_event_write', 'crm_lead_read', 'crm_lead_write', 'crm_pipeline_read', 'crm_pipeline_write', 'martech_list_read', 'martech_list_write', 'martech_member_read', 'martech_member_write', 'ticketing_customer_read', 'ticketing_customer_write', 'ticketing_ticket_read', 'ticketing_ticket_write', 'ticketing_note_read', 'ticketing_note_write', 'hris_employee_read', 'hris_employee_write', 'hris_group_read', 'hris_group_write', 'hris_payslip_read', 'hris_payslip_write', 'hris_timeoff_read', 'hris_timeoff_write', 'hris_company_read', 'hris_company_write', 'hris_location_read', 'hris_location_write', 'uc_call_read', 'storage_file_read', 'storage_file_write', 'webhook', 'genai_model_read', 'genai_prompt_read', 'genai_prompt_write', 'messaging_message_read', 'messaging_message_write', 'messaging_channel_read', 'kms_space_read', 'kms_space_write', 'kms_page_read', 'kms_page_write', 'kms_comment_read', 'kms_comment_write', 'task_project_read', 'task_project_write', 'task_task_read', 'task_task_write', 'scim_users_read', 'scim_users_write', 'scim_groups_read', 'scim_groups_write'] },
     categories: { type: [String], enum: ['passthrough', 'hris', 'ats', 'auth', 'crm', 'enrich', 'martech', 'ticketing', 'uc', 'accounting', 'storage', 'commerce', 'payment', 'genai', 'messaging', 'kms', 'task', 'scim'], index: true },
-    auth: { type: schemaConnectionAuth },
+    auth: { type: exports.schemaConnectionAuth },
     is_paused: { type: Boolean },
     auth_aws_arn: { type: String },
     environment: { type: String, default: 'Production' },
@@ -57,7 +60,7 @@ export const schemaConnection = {
     last_unhealthy_at: { type: Date },
     cursors_cache: { type: [Object] },
 };
-export const schemaIntegrationSupport = {
+exports.schemaIntegrationSupport = {
     methods: { type: Object },
     inbound_fields: { type: Object },
     outbound_fields: { type: Object },
@@ -102,45 +105,45 @@ export const schemaIntegrationSupport = {
     list_item_variant_id: { type: String, enum: ['supported-required', 'supported', 'not-supported'] },
     list_raw_fields: { type: String, enum: ['supported-required', 'supported', 'not-supported'] },
 };
-export const schemaInvoice = {};
-export const schemaIssue = {
+exports.schemaInvoice = {};
+exports.schemaIssue = {
     created_at: { type: String },
     updated_at: { type: String },
     title: { type: String },
     status: { type: String, enum: ['COMPLETED', 'NEW', 'ROADMAP', 'IN_PROGRESS', 'ON_HOLD', 'VALIDATING', 'REJECTED', 'UP_NEXT'] },
     url: { type: String },
-    workspace_id: { type: SchemaTypes.ObjectId, index: true, ref: 'Workspace' },
+    workspace_id: { type: mongoose_1.SchemaTypes.ObjectId, index: true, ref: 'Workspace' },
     type: { type: [String] },
     resolution_time: { type: Number },
     ticket_ref: { type: String },
     size: { type: Number },
     importance: { type: Number }, // 1-5, 1 is lowest
 };
-export const schemaNotification = {
-    workspace_id: { type: SchemaTypes.ObjectId, index: true, ref: 'Workspace' },
+exports.schemaNotification = {
+    workspace_id: { type: mongoose_1.SchemaTypes.ObjectId, index: true, ref: 'Workspace' },
     description: { type: String },
-    user_id: { type: SchemaTypes.ObjectId, ref: 'User' },
+    user_id: { type: mongoose_1.SchemaTypes.ObjectId, ref: 'User' },
     user_name: { type: String },
     workspace_name: { type: String },
-    webhook_id: { type: SchemaTypes.ObjectId, ref: 'Webhook' },
-    connection_id: { type: SchemaTypes.ObjectId, ref: 'Connection' },
+    webhook_id: { type: mongoose_1.SchemaTypes.ObjectId, ref: 'Webhook' },
+    connection_id: { type: mongoose_1.SchemaTypes.ObjectId, ref: 'Connection' },
     integration_type: { type: String },
     integration_name: { type: String },
     sent_at: { type: Date },
     event: { type: String, enum: ['USER_CREATED', 'USER_DELETED', 'CONNECTION_HEALTHY', 'CONNECTION_UNHEALTHY', 'CONNECTION_CREATED', 'CONNECTION_UPDATED', 'CONNECTION_DELETED', 'CONNECTION_PAUSED', 'CONNECTION_UNPAUSED', 'INTEGRATION_ACTIVATED', 'INTEGRATION_DEACTIVATED', 'INTEGRATION_UPDATED', 'WORKSPACE_UPDATED', 'WORKSPACE_OVER_LIMIT', 'WORKSPACE_80PERCENT_LIMIT', 'WEBHOOK_CREATED', 'WEBHOOK_DELETED', 'WEBHOOK_UNHEALTHY'] },
 };
-export const schemaUser = {
+exports.schemaUser = {
     name: { type: String },
     email: { type: String, index: true },
-    workspace_id: { type: SchemaTypes.ObjectId, index: true, ref: 'Workspace' },
-    workspace_ids: { type: [SchemaTypes.ObjectId], index: true, ref: 'Workspace' },
+    workspace_id: { type: mongoose_1.SchemaTypes.ObjectId, index: true, ref: 'Workspace' },
+    workspace_ids: { type: [mongoose_1.SchemaTypes.ObjectId], index: true, ref: 'Workspace' },
     environment: { type: String, default: 'Production' },
     meta: { type: Object },
 };
-export const schemaWebhook = {
+exports.schemaWebhook = {
     updated_at: { type: Date },
-    workspace_id: { type: SchemaTypes.ObjectId, index: true, ref: 'Workspace' },
-    connection_id: { type: SchemaTypes.ObjectId, index: true, ref: 'Integration' },
+    workspace_id: { type: mongoose_1.SchemaTypes.ObjectId, index: true, ref: 'Workspace' },
+    connection_id: { type: mongoose_1.SchemaTypes.ObjectId, index: true, ref: 'Integration' },
     hook_url: { type: String },
     object_type: { type: String, enum: ['accounting_account', 'accounting_transaction', 'accounting_journal', 'accounting_contact', 'accounting_invoice', 'accounting_taxrate', 'accounting_organization', 'accounting_order', 'payment_payment', 'payment_link', 'payment_payout', 'payment_refund', 'commerce_item', 'commerce_collection', 'commerce_inventory', 'commerce_location', 'ats_activity', 'ats_application', 'ats_applicationstatus', 'ats_candidate', 'ats_document', 'ats_interview', 'ats_job', 'ats_scorecard', 'ats_company', 'crm_company', 'crm_contact', 'crm_deal', 'crm_event', 'crm_lead', 'crm_pipeline', 'hris_employee', 'hris_group', 'hris_payslip', 'hris_timeoff', 'hris_company', 'hris_location', 'martech_list', 'martech_member', 'passthrough', 'ticketing_note', 'ticketing_ticket', 'ticketing_customer', 'uc_contact', 'uc_call', 'enrich_person', 'enrich_company', 'storage_file', 'genai_model', 'genai_prompt', 'messaging_message', 'messaging_channel', 'kms_space', 'kms_page', 'task_project', 'task_task', 'scim_users', 'scim_groups'] },
     interval: { type: Number },
@@ -156,14 +159,14 @@ export const schemaWebhook = {
     page_max_limit: { type: Number },
     filters: { type: Object },
 };
-export const schemaWebhookData = {
+exports.schemaWebhookData = {
     data: { type: [Object] },
-    webhook: { type: schemaWebhook },
+    webhook: { type: exports.schemaWebhook },
     nonce: { type: String },
     sig: { type: String },
     type: { type: String, enum: ['INITIAL-PARTIAL', 'INITIAL-COMPLETE', 'VIRTUAL', 'NATIVE'] },
 };
-export const schemaWorkspaceIntegration = {
+exports.schemaWorkspaceIntegration = {
     integration_type: { type: String },
     client_id: { type: String },
     client_secret: { type: String },
@@ -180,9 +183,9 @@ export const schemaWorkspaceIntegration = {
     categories: { type: [String], enum: ['passthrough', 'hris', 'ats', 'auth', 'crm', 'enrich', 'martech', 'ticketing', 'uc', 'accounting', 'storage', 'commerce', 'payment', 'genai', 'messaging', 'kms', 'task', 'scim'] },
     dev_api_key: { type: String },
 };
-export const schemaWorkspace = {
+exports.schemaWorkspace = {
     name: { type: String },
-    admin_ids: { type: [SchemaTypes.ObjectId], index: true, ref: 'User' },
+    admin_ids: { type: [mongoose_1.SchemaTypes.ObjectId], index: true, ref: 'User' },
     invited_emails: { type: [String], index: true },
     pay_user_id: { type: String },
     plan: { type: String },
@@ -190,7 +193,7 @@ export const schemaWorkspace = {
     stripe_subscriptions: { type: [String] },
     stripe_prices: { type: [String] },
     secret: { type: String },
-    integrations: { type: [schemaWorkspaceIntegration] },
+    integrations: { type: [exports.schemaWorkspaceIntegration] },
     ip_addresses: { type: [String] },
     aws_region: { type: String },
     aws_key: { type: String },

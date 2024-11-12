@@ -138,6 +138,8 @@ function UnifiedDirectory(props) {
         !props.notabs && CATEGORIES && CATEGORIES.length > 0 && filter(INTEGRATIONS).length && (react_1.default.createElement("div", { className: "unified_menu" },
             react_1.default.createElement("button", { className: `unified_button unified_button_all ${selectedCategory ? '' : ' active'}`, onClick: () => setCategory('') }, "All"),
             CATEGORIES.map((cat) => (react_1.default.createElement("button", { key: cat, className: `unified_button unified_button_${cat} ${selectedCategory === cat ? 'active' : ''}`, onClick: () => setCategory(cat) }, CATEGORY_MAP[cat]))))),
+        react_1.default.createElement("div", null,
+            react_1.default.createElement("input", { type: "search", name: "", id: "" })),
         react_1.default.createElement("div", { className: "unified_vendors" },
             filter(INTEGRATIONS).map((integration) => (react_1.default.createElement("a", { key: integration.type, href: unified_get_auth_url(integration), className: "unified_vendor" },
                 react_1.default.createElement("img", { alt: integration.name, src: integration.logo_url, className: "unified_image" }),
